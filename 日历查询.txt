@@ -1,0 +1,90 @@
+import java.util.Scanner;
+public class x{
+	public static void main(String args[]){
+		Scanner smy=new Scanner(System.in);
+		for(;;){
+			System.out.println("请输入您要查询的年份:");
+			int year=smy.nextInt();
+			System.out.println("请输入您要查询的月份:");
+			int month=smy.nextInt();
+			int temp=0;
+			for(int i=1900;i<year;i++){
+				if(i%4==0&&i%100!=0||i%400==0){
+					temp=temp+366;	
+				}else{
+					temp=temp+365;
+				}
+			}
+			for(int i=1;i<month;i++){
+				if(i==2){
+					if(year%4==0&&year%100!=0||year%400==0){
+						temp=temp+29;
+					}else{
+						temp=temp+28;
+					}
+				}else{
+					if(i==1||i==3||i==5||i==7||i==8||i==10||i==12){
+						temp=temp+31;
+					}else{
+						temp=temp+30;
+					}
+				}
+			}
+			temp=temp+1;	
+			int week=temp%7;
+			System.out.println("日\t一\t二\t三\t四\t五\t六");
+			for(int i=1;i<week+1;i++){
+				System.out.print("\t");
+			}
+			if(month==2){
+				if(year%4==0&&year%100!=0||year%400==0){
+					for(int i=1;i<30;i++){
+						if(temp%7==6){
+							System.out.print(i+"\n");
+						}else{
+							System.out.print(i+"\t");
+						}
+					temp++;
+					}
+				}else{
+					for(int i=1;i<29;i++){
+						if(temp%7==6){
+							System.out.print(i+"\n");
+						}else{
+							System.out.print(i+"\t");
+						}
+					temp++;	
+					}
+				}
+			}else if(month==1||month==3||month==5||month==7||month==8||month==10||month==12){
+				for(int i=1;i<32;i++){
+					if(temp%7==6){
+						System.out.print(i+"\n");
+					}else{
+						System.out.print(i+"\t");
+					}
+				temp++;
+				}
+			}else{
+				for(int i=1;i<31;i++){
+					if(temp%7==6){
+						System.out.print(i+"\n");
+					}else{
+						System.out.print(i+"\t");
+					}
+				temp++;
+				}
+			}
+		System.out.println();
+		System.out.println();
+		System.out.println("继续查询?");
+		String r=smy.next();
+			if(r.equals("yes")){
+				System.out.println();
+			}else{
+				System.out.println("停止查询");
+				break;
+			}
+		}
+	}
+}
